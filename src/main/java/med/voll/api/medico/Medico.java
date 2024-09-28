@@ -26,4 +26,12 @@ public class Medico {
 
     @Embedded //classe separada mas o campo faz parte da mesma tabela
     private Endereco endereco;
+
+    public Medico(DadosCadastroMedico dados) {
+        this.nome = dados.nome();
+        this.email = dados.crm();
+        this.crm = dados.crm();
+        this.endereco =  new Endereco(dados.endereco());
+        this.especialidade = dados.especialidade();
+    }
 }
