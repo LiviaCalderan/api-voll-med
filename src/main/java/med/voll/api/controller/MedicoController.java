@@ -1,7 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.transaction.Transactional;
-import med.voll.api.endereco.Endereco;
+import jakarta.validation.Valid;
 import med.voll.api.medico.DadosCadastroMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoRepository;
@@ -20,7 +20,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional //transacao ativa com o banco de dados
-    public void cadastrarMedico(@RequestBody DadosCadastroMedico dados) {
+    public void cadastrarMedico(@RequestBody @Valid DadosCadastroMedico dados) {
         repository.save(new Medico(dados));
     }
 }
