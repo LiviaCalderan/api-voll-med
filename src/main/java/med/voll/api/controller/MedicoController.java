@@ -9,6 +9,7 @@ import med.voll.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class MedicoController {
     }
 
     @GetMapping
-    public Page<DadosListagemMedico> ListarMedicos(Pageable paginacao) {
+    public Page<DadosListagemMedico> ListarMedicos(@PageableDefault(size = 10, page = 0, sort = {"nome"}) Pageable paginacao) {
         return repository.findAll(paginacao) //o page já possui o map, entao nao precisa do stream
                 .map(DadosListagemMedico::new);
     }
