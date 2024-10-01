@@ -7,6 +7,8 @@ import med.voll.api.medico.DadosListagemMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +27,8 @@ public class MedicoController {
     }
 
     @GetMapping
-    public List<DadosListagemMedico> ListarMedicos() {
-        return repository.findAll()
-                .stream()//stream permite processar elementos de uma coleção de maneira mais funcional
-                .map(DadosListagemMedico::new)
-                //para cada Medico na lista, você quer criar um novo objeto DadosListagemMedico
-                //DadosListagemMedico::new é uma referência a um construtor, que significa que para cada Medico,
-                // será criado um novo objeto do tipo DadosListagemMedico usando o construtor dele.
-                .toList(); //converte o stream processado de volta em uma lista.
+    public Page<DadosListagemMedico> ListarMedicos(Pageable paginacao) {
+        return repository.findAll(paginacao) //o page já possui o map, entao nao precisa do stream
+                .map(DadosListagemMedico::new);
     }
 }
