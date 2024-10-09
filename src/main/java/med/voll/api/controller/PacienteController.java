@@ -28,8 +28,18 @@ public class PacienteController {
                 .map(DadosListagemPaciente::new);
     }
 
+
+    @PutMapping
+    @Transactional
     public void atualizarPacientes(@RequestBody @Valid DadosAtualizacaoPaciente dadosPaciente){
         var paciente = repository.getReferenceById(dadosPaciente.id());
         paciente.atualizarInformacoes(dadosPaciente);
     }
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var paciente = repository.getReferenceById(id);
+        paciente.excluir();
+    }
+
 }
