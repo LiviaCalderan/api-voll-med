@@ -26,7 +26,7 @@ public class MedicoController {
 
     @GetMapping
     public Page<DadosListagemMedico> ListarMedicos(@PageableDefault(size = 10, page = 0, sort = {"nome"}) Pageable paginacao) {
-        return repository.findAll(paginacao) //o page já possui o map, entao nao precisa do stream
+        return repository.findAllByAtivoTrue(paginacao) //o page já possui o map, entao nao precisa do stream
                 .map(DadosListagemMedico::new);
     }
 
