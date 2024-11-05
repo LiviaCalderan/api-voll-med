@@ -9,7 +9,7 @@ de consultas. A aplicação deve possuir funcionalidades como: cadastro de médi
 
 - [x] CRUD de médicos;
 - [x] CRUD de pacientes;
-- [ ] Agendamento de consultas(em breve);
+- [ ] Agendamento de consultas --- em desenvolvimento;
 - [ ] Cancelamento de consultas(em breve);
 
 ---
