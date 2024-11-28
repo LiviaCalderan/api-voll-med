@@ -65,7 +65,7 @@ public class AgendaDeConsultas {
         return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
     }
 
-    private void cancelar(DadosCancelamentoDeConsulta dados) {
+    public void cancelar(DadosCancelamentoDeConsulta dados) {
         if (!consultaRepository.existsById(dados.idConsulta())) {
             throw new ValidacaoException("O ID da consulta informada não existe!");
         }
